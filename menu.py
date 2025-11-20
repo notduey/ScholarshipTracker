@@ -3,7 +3,7 @@
 menu file for scholarship tracker
 """
 from add_scholarship import add_scholarship
-from view_scholarship import view_scholarships
+from manage_scholarship import manage_scholarship
 
 def display_main_menu():
     """
@@ -21,13 +21,13 @@ def main_menu():
         display_main_menu()
         choice = input("Enter your choice:").strip()
         if choice not in ["1", "2", "3"]:
-            print("Invalid choice. Enter 1, 2, or, 3")
+            print("Invalid choice. Enter 1, 2, or, 3.")
             continue #continue goes back to the start of the while loop
 
         if choice == "1":
             add_scholarship()
         elif choice == "2":
-            view_scholarships()
+            manage_scholarship()
         elif choice == "3":
             print("exiting program")
             break #break ends the while loop

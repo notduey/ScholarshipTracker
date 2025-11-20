@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 """
-view/edit
+view scholarships
 """
 from data import scholarships
 
-def view_scholarships():
+def view_scholarship():
     """
-    view scholarships
+    loop through scholarships
     """
-    if not scholarships:
-        print("No scholarships found")
+    if not scholarships: #if not checks if scholarships list is empty
+        print("No scholarships found.")
         return
 
     print("Scholarships:\n")
@@ -25,4 +25,21 @@ def view_scholarships():
         print(f"Status: {row[4]}")
         print(f"Essay required: {row[5]}")
         print(f"Notes: {row[6]}")
+        print("\n")
+
+def view_title():
+    """
+    loop through titles
+    """
+    if not scholarships: #if not checks if scholarships list is empty
+        print("No scholarships found.")
+        return
+
+    print("Scholarships:\n")
+
+    for i, row in enumerate(scholarships, start=1):
+        #enumerate() function adds a counter to the list
+        #start=1 starts the counter at 1 instead of 0
+        print(f"{i}.") #prints scholarship number
+        print(f"Name: {row[0]}")
         print("\n")

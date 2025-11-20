@@ -6,7 +6,7 @@ from data import scholarships
 
 def add_scholarship():
     """
-    add scholarship menu
+    add scholarship with relevant information
     """
     name = input("Scholarship name: ").strip().title()
     link = input("Scholarship link: ").strip()
@@ -14,7 +14,7 @@ def add_scholarship():
     deadline = input("Scholarship deadline: ").strip()
     status = input("Scholarship status: ").strip()
 
-    essay = input("Essay required? (y/n): ").lower().strip()
+    essay = input("Essay required? (y/n): ").strip().lower()
     if essay == "y":
         essay = "yes"
     if essay == "n":
