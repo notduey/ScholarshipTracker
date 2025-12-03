@@ -20,14 +20,14 @@ def view_scholarship():
         print(f"{i}. {row[0]}") #prints scholarship number and name
         print(f" Link: {row[1]}")
 
-        amount = float(row[2]) #converts string to float
-        formatted = locale.currency(amount, grouping=True) #grouping=True adds commas
+        formatted = locale.currency(float(row[2]), grouping=True) #grouping=True adds commas
         print(f" Amount: {formatted}")
 
         print(f" Deadline: {row[3]}")
         print(f" Status: {row[4]}")
         print(f" Essay required: {row[5]}")
-        print(f" Notes: {row[6]}")
+        if row[6]:
+            print(f" Additional notes: {row[6]}")
         print()
 
 def view_title():
@@ -44,4 +44,5 @@ def view_title():
         #enumerate() function adds a counter to the list
         #start=1 starts the counter at 1 instead of 0
         print(f"{i}. {row[0]}") #prints scholarship number and name
-        print()
+
+    print()
