@@ -2,17 +2,20 @@
 """
 view scholarships
 """
+import platform
 import locale #for currency
 from data import scholarships
 
-locale.setlocale(locale.LC_ALL, "en_US") #sets locale to en_US
+if platform.system() == "Windows":
+    locale.setlocale(locale.LC_ALL, "English_United States.1252")
+else:
+    locale.setlocale(locale.LC_ALL, "en_US.UTF-8")
 
 def view_scholarship():
     """
     loop through scholarships
     """
-
-    print("Scholarships:\n")
+    print("\nScholarships:\n")
 
     for i, row in enumerate(scholarships, start=1):
         #enumerate() function adds a counter to the list
@@ -26,23 +29,14 @@ def view_scholarship():
         print(f" Deadline: {row[3]}")
         print(f" Status: {row[4]}")
         print(f" Essay required: {row[5]}")
+
         if row[6]:
-            print(f" Additional notes: {row[6]}")
-        print()
+            print(f" Additional notes: {row[6]}\n")
 
 def view_title():
     """
     loop through titles
     """
-    if not scholarships: #if not checks if scholarships list is empty
-        print("No scholarships found.")
-        return
-
-    print("Scholarships:\n")
-
+    print("\nScholarships:\n")
     for i, row in enumerate(scholarships, start=1):
-        #enumerate() function adds a counter to the list
-        #start=1 starts the counter at 1 instead of 0
         print(f"{i}. {row[0]}") #prints scholarship number and name
-
-    print()

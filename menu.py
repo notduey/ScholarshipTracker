@@ -2,33 +2,45 @@
 """
 menu file for scholarship tracker
 """
-from add_scholarship import add_scholarship
+from add_edit_scholarship import add_scholarship
 from manage_scholarship import manage_scholarship
-
-def display_main_menu():
-    """
-    displays main menu
-    """
-    print("Main Menu\n")
-    print("1. Add Scholarship")
-    print("2. View/Edit Scholarships")
-    print("3. Save and Exit Program\n")
+from data import scholarships
 
 def main_menu():
     """
     main menu that gives user to add, view/edit scholarships, or exit program"""
+
     while True:
-        display_main_menu()
+        if scholarships:
+            print("Main Menu\n")
+            print("1. Add Scholarship\n"
+                  "2. View/Edit Scholarships\n"
+                  "3. Save and Exit Program\n")
+        else:
+            print("Main Menu\n")
+            print("1. Add Scholarship\n"
+                  "2. Save and Exit Program\n")
+
         choice = input("Enter your choice: ").strip()
-        print()
-        if choice not in ["1", "2", "3"]:
-            print("Invalid choice. Enter 1, 2, or, 3.\n")
-            continue #continue goes back to the start of the while loop
+        options = "1 or 2"
+        options_range = ["1", "2"]
+
+        if scholarships:
+            options = "1, 2, or 3"
+            options_range = ["1", "2", "3"]
+        while choice not in options_range:
+            choice = input(f"Invalid choice. Enter {options}: ").strip()
 
         if choice == "1":
             add_scholarship()
         elif choice == "2":
-            manage_scholarship()
-        elif choice == "3":
-            print("Saving and exiting program...")
-            break #break ends the while loop
+            if scholarships:
+                manage_scholarship()
+            else:
+                print("\nSaving and exiting program...\n")
+                break
+
+        if scholarships:
+            if choice == "3":
+                print("\nSaving and exiting program...")
+                break
