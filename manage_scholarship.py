@@ -19,9 +19,7 @@ def manage_scholarship():
         return
 
     view_scholarship()
-    choice = input(
-        "Enter E to edit, D to delete, or M to return to main menu: "
-    ).strip().upper()
+    choice = input("Enter E to edit, D to delete, or M to return to main menu: ").strip().upper()
     print()
 
     while choice not in ["D", "E", "M"]:
@@ -42,58 +40,47 @@ def delete_scholarship():
     delete scholarship
     """
     view_title()
-    choice = input(
-        "Enter the scholarship number to delete or press enter to cancel: "
-    ).strip()
+    choice = input("Enter the scholarship number to delete (press enter to cancel): ").strip()
 
     if choice:
         while True:
             try:
                 choice = int(choice)
+                if choice <= 0 or choice > len(scholarships):
+                    raise IndexError
                 deleted = scholarships.pop(choice - 1) #choice - 1 because index starts at 0
-                print(f"\"{deleted[0]}\" has been deleted.\n") #deleted[0] is 0th index of row
-                #which is the name of the scholarship
+                print(f"\"{deleted[0]}\" has been deleted.\n") # deleted[0] is the name index
                 break
             except ValueError:
-                choice = input("Invalid input. Enter a number: ")
+                choice = input("Invalid input. Enter a number: ").strip()
             except IndexError:
-                if len(scholarships) == 1:
-                    choice = input(
-                        "Invalid number. Enter corresponding number: "
-                        ).strip()
-                elif len(scholarships) > 1:
-                    choice = input(
-                        f"Invalid number. Enter corresponding number 1-{len(scholarships)}: "
-                        ).strip()
+                choice = input(
+                    f"Invalid number. Enter corresponding number 1-{len(scholarships)}: "
+                    ).strip()
     else:
         print("Deletion cancelled.\n")
-        return
 
-def edit_scholarship():
+def edit_scholarship(): #MAKE NEW FILE TO STORE EDIT FUNCTIONS
     """
     edits scholarship info
     """
     view_title()
-    choice = input(
-        "Enter the scholarship number to edit or press enter to cancel: "
-        ).strip()
+    choice = input("Enter the scholarship number to edit (press enter to cancel): ").strip()
 
     if choice:
         while True:
             try:
                 choice = int(choice)
+                if choice <= 0 or choice > len(scholarships):
+                    raise IndexError
                 scholarship = scholarships[choice - 1] #choice - 1 because index starts at 0
                 break
             except ValueError:
                 choice = input("Invalid input. Enter a number: ").strip()
             except IndexError:
-                if len(scholarships) == 1:
-                    choice = input(
-                        "Invalid number. Enter corresponding number: ").strip()
-                elif len(scholarships) > 1:
-                    choice = input(
-                        f"Invalid number. Enter corresponding number 1-{len(scholarships)}: "
-                        ).strip()
+                choice = input(
+                    f"Invalid number. Enter corresponding number 1-{len(scholarships)}: "
+                    ).strip()
     else:
         print("Edit cancelled.\n")
         return
@@ -106,8 +93,7 @@ def edit_scholarship():
     print("6. Essay required")
     print("7. Notes")
     choice = input(
-        "\nEnter the corresponding number you want to edit or press enter to cancel: "
-        ).strip()
+        "\nEnter the corresponding number you want to edit (press enter to cancel): ").strip()
     print()
     if choice:
         while choice not in ["1", "2", "3", "4", "5", "6", "7"]:
@@ -117,65 +103,113 @@ def edit_scholarship():
         return
 
     if choice == "1":
-        name_input = input("Enter new name: ").strip()
-        while not name_input:
-            name_input = input("Name cannot be empty. Enter a name: ").strip()
-        scholarship[0] = name_input[0].upper() + name_input[1:]
-        print(f"Name updated to: {scholarship[0]}\n")
+        name_input = input("Enter new name (press enter to cancel): ").strip()
+        if name_input:
+            scholarship[0] = name_input[0].upper() + name_input[1:]
+            print(f"Name updated to: {scholarship[0]}\n")
+        else:
+            print("Edit cancelled.\n")
+            return
 
     elif choice == "2":
-        link_input = input("Enter new link (Press enter to delete link): ").strip().lower()
+        link_input = input(
+            "Enter new link or press D to delete link (press enter to cancel): ").strip().lower()
         if link_input:
+            if link_input == "d":
+                scholarship[1] = "NO LINK"
+                print("Link deleted.\n")
+                return
             scholarship[1] = link_input
+            print(f"Link updated to: {scholarship[1]}\n")
         else:
-            scholarship[1] = "NO LINK"
-        print(f"Link updated to: {scholarship[1]}\n")
+            print("Edit cancelled.\n")
+            return
 
     elif choice == "3":
-        amount_input = input("Enter new amount: ").strip() #asks user for new amount
-        while True:
-            try:
-                amount = float(amount_input.replace("$", "").replace(",", ""))
-                scholarship[2] = str(f"{amount:.2f}") #stores amount with 2 decimal places
-                formatted = locale.currency(amount, grouping=True) #format amount adding $ and ,
-                print(f"Amount updated to: {formatted}\n")
-                break
-            except ValueError: #runs if amount couldn't be converted to float
-                amount_input = input("Invalid amount. Enter a number: ").strip()
-                #asks user again then goes back to top of while loop
+        amount_input = input("Enter new amount (press enter to cancel): ").strip()
+        if amount_input:
+            while True:
+                try:
+                    amount = float(amount_input.replace("$", "").replace(",", ""))
+                    scholarship[2] = str(f"{amount:.2f}") #stores amount with 2 decimal places
+                    formatted = locale.currency(amount, grouping=True) #format amount adding $ and ,
+                    print(f"Amount updated to: {formatted}\n")
+                    break
+                except ValueError: #runs if amount couldn't be converted to float
+                    amount_input = input("Invalid amount. Enter a number: ").strip()
+        else:
+            print("Edit cancelled.\n")
+            return
 
     elif choice == "4":
-        deadline_input = input("Enter new deadline (MM/DD/YYYY): ").strip()
-        while True:
-            try:
-                deadline_date = datetime.strptime(deadline_input, "%m/%d/%Y")
-                if platform.system() == "Windows":
-                    scholarship[3] = deadline_date.strftime("%B %#d, %Y")
-                else:
-                    scholarship[3] = deadline_date.strftime("%B %-d, %Y")
-                break
-            except ValueError:
-                deadline_input = input("Invalid date format. Enter MM/DD/YYYY: ").strip()
-        print(f"Deadline updated to: {scholarship[3]}\n")
+        deadline_input = input("Enter new deadline MM/DD/YYYY (press enter to cancel): ").strip()
+        if deadline_input:
+            while True:
+                try:
+                    deadline_date = datetime.strptime(deadline_input, "%m/%d/%Y")
+                    if platform.system() == "Windows":
+                        scholarship[3] = deadline_date.strftime("%B %#d, %Y")
+                    else:
+                        scholarship[3] = deadline_date.strftime("%B %-d, %Y")
+                    break
+                except ValueError as e:
+                    if "does not match format" in str(e):
+                        deadline_input = input("Invalid date. Enter MM/DD/YYYY: ").strip()
+                    elif "out of range" in str(e):
+                        deadline_input = input("Date does not exist. Enter a valid date: ").strip()
+                    else:
+                        deadline_input = input(f"Unknown error: {e}.\nEnter a valid date:").strip()
+            print(f"Deadline updated to: {scholarship[3]}\n")
+        else:
+            print("Edit cancelled.\n")
+            return
 
     elif choice == "5":
-        scholarship[4] = input(
-            "\nEnter status (incomplete/ongoing/complete): "
-        ).strip().upper()
-        while scholarship[4] not in ["INCOMPLETE", "ONGOING", "COMPLETE"]:
-            scholarship[4] = input("Enter incomplete, ongoing, or complete: ").strip().upper()
-        print(f"Status updated to: {scholarship[4]}\n")
+        status_input = input(
+            "\nEnter status incomplete/ongoing/complete (press enter to cancel): ").strip().upper()
+        if status_input:
+            while status_input not in ["INCOMPLETE", "ONGOING", "COMPLETE"]:
+                status_input = input("Enter incomplete, ongoing, or complete: ").strip().upper()
+            scholarship[4] = status_input
+            print(f"Status updated to: {scholarship[4]}\n")
+        else:
+            print("Edit cancelled.\n")
+            return
 
     elif choice == "6":
-        essay_input = input("Essay required? (y/n): ").strip().lower()
-        while essay_input not in ["y", "n"]:
-            essay_input = input("Invalid response. Enter y or n: ").strip().lower()
-        if essay_input == "y":
-            scholarship[5] = "YES"
-        elif essay_input == "n":
-            scholarship[5] = "NO"
-        print(f"Essay required updated to: {scholarship[5]}\n")
+        essay_input = input(
+            "Essay required? Press Y or N (press enter to cancel): ").strip().lower()
+        if essay_input:
+            while essay_input not in ["y", "n"]:
+                essay_input = input("Invalid response. Enter Y or N: ").strip().lower()
+            if essay_input == "y":
+                scholarship[5] = "YES"
+            elif essay_input == "n":
+                scholarship[5] = "NO"
+            print(f"Essay required updated to: {scholarship[5]}\n")
+        else:
+            print("Edit cancelled.\n")
+            return
 
     elif choice == "7":
-        scholarship[6] = input("Enter new notes: ").strip()
-        print(f"New notes: {scholarship[6]}\n")
+        note_input = input(
+            "Press A to add to notes, R to replace/make notes, or D to delete notes "
+            "(press enter to cancel): "
+            ).strip().lower()
+        if note_input:
+            while note_input not in ["a", "r", "d"]:
+                note_input = input("Invalid response. Enter E, R, or D: ").strip().lower()
+            if note_input == "a":
+                append = input("Enter text to add to notes (press enter to cancel): ").strip()
+                if append:
+                    scholarship[6] += " " + append
+                    print(f"Notes updated to: {scholarship[6]}\n")
+            elif note_input == "r":
+                scholarship[6] = input("Enter new notes: ").strip()
+                print("New notes added.\n")
+            elif note_input == "d":
+                scholarship[6] = ""
+                print("Notes cleared.\n")
+        else:
+            print("Edit cancelled.\n")
+            return

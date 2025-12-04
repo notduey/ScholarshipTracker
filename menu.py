@@ -9,10 +9,10 @@ def display_main_menu():
     """
     displays main menu
     """
-    print("Main Menu")
+    print("Main Menu\n")
     print("1. Add Scholarship")
     print("2. View/Edit Scholarships")
-    print("3. Save and Exit Program")
+    print("3. Save and Exit Program\n")
 
 def main_menu():
     """

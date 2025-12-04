@@ -47,10 +47,15 @@ def add_scholarship():
                 else:
                     deadline = deadline_date.strftime("%B %-d, %Y") #formats date for macos/linx
                 break
-            except ValueError:
-                deadline_input = input("Invalid date format. Enter MM/DD/YYYY: ").strip()
+            except ValueError as e:
+                if "does not match format" in str(e):
+                    deadline_input = input("Invalid date. Enter MM/DD/YYYY: ").strip()
+                elif "out of range" in str(e):
+                    deadline_input = input("Date does not exist. Enter a valid date: ").strip()
+                else:
+                    deadline_input = input(f"Unknown error: {e}.\nEnter a valid date:")
         else:
-            deadline = "DEADLINE UNKNOWN"
+            deadline = "DEADLINE N/A"
             break
 
     status = input(
@@ -59,15 +64,15 @@ def add_scholarship():
     while status not in ["INCOMPLETE", "ONGOING","COMPLETE"]:
         status = input("Enter incomplete, ongoing, or complete: ").strip().upper()
 
-    essay_input = input("Essay required? (y/n): ").strip().lower()
-    while essay_input not in ["y", "n"]:
-        essay_input = input("Invalid response. Enter y or n: ").strip().lower()
+    essay_input = input("Essay required? Press Y or N: ").strip().lower()
+    while essay_input not in ["Y", "N"]:
+        essay_input = input("Invalid response. Enter Y or N: ").strip().lower()
     if essay_input == "y":
         essay = "YES"
     else:
         essay = "NO"
 
-    notes = input("Additional scholarship notes: ").strip()
+    notes = input("Additional scholarship notes (press enter to skip): ").strip()
     print()
 
     new_scholarship = [name, link, amount, deadline, status, essay, notes]
