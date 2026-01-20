@@ -6,11 +6,9 @@ import add_edit_functions as ae
 from data import scholarships
 
 def add_scholarship():
-
     """
     add scholarship with relevant information
     """
-
     name = ae.add_name()
     link = ae.add_link()
     amount = ae.add_amount()
@@ -26,7 +24,8 @@ def add_scholarship():
 
 def edit_choices(scholarship):
     """
-    edit choices name, link, amount, deadline, status, essay required, notes"""
+    edit choices name, link, amount, deadline, status, essay required, notes
+    """
     print("\n1. Name"
           "\n2. Link"
           "\n3. Amount"
