@@ -6,6 +6,7 @@ from add_edit_scholarship import add_scholarship
 from manage_scholarship import manage_scholarship
 from data import scholarships
 
+
 def main_menu():
     """
     main menu that gives user to add, view/edit scholarships, or exit program"""

@@ -6,6 +6,7 @@ from add_edit_scholarship import edit_choices
 from data import scholarships
 from view_scholarship import view_scholarship, view_title
 
+
 def manage_scholarship():
     """
     view and manage scholarship menu
@@ -18,6 +19,7 @@ def manage_scholarship():
         print("Returning to main menu.\n")
         return
     delete_edit_prompt(choice)
+
 
 def delete_edit_prompt(choice):
     """
@@ -37,12 +39,12 @@ def delete_edit_prompt(choice):
                 if num_input <= 0 or num_input > len(scholarships):
                     raise IndexError
                 if choice == "E":
-                    scholarship = scholarships[num_input - 1] #choice - 1 because index starts at 0
-                    edit_choices(scholarship)
+                    name = scholarships[num_input - 1] #input - 1 because index starts at 0
+                    edit_choices(name)
                 elif choice == "D":
                     name = scholarships[num_input - 1][0] #num_input - 1 is row index, 0 is name
                     confirm_input = input(
-                        f"\nAre you sure you want to {name}? Press Y or N: ").strip().lower()
+                        f"\nAre you sure you want to delete {name}? Press Y or N: ").strip().lower()
                     while confirm_input not in ["y","n"]:
                         confirm_input = input("Invalid response. Enter Y or N: ").strip().lower()
                     if confirm_input == "y":

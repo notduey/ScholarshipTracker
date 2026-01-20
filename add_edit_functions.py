@@ -11,6 +11,7 @@ if platform.system() == "Windows":
 else:
     locale.setlocale(locale.LC_ALL, "en_US.UTF-8")
 
+
 def add_name():
     """
     add scholarship name and returns it
@@ -21,6 +22,7 @@ def add_name():
     else:
         name = "NO NAME"
     return name
+
 
 def edit_name(scholarship):
     """
@@ -33,6 +35,7 @@ def edit_name(scholarship):
     else:
         print("Edit cancelled.\n")
 
+
 def add_link():
     """
     add scholarship link and returns it
@@ -43,6 +46,7 @@ def add_link():
     else:
         link = "NO LINK"
     return link
+
 
 def edit_link(scholarship):
     """
@@ -59,6 +63,7 @@ def edit_link(scholarship):
         print(f"Link updated to: {scholarship[1]}\n")
     else:
         print("Edit cancelled.\n")
+
 
 def add_amount():
     """
@@ -78,6 +83,7 @@ def add_amount():
             break
     return amount
 
+
 def edit_amount(scholarship):
     """
     edits scholarship amount"""
@@ -94,6 +100,7 @@ def edit_amount(scholarship):
                 amount_input = input("Invalid amount. Enter a number: ").strip()
     else:
         print("Edit cancelled.\n")
+
 
 def add_deadline():
     """
@@ -121,6 +128,7 @@ def add_deadline():
             break
     return deadline
 
+
 def edit_deadline(scholarship):
     """
     edits scholarship deadline"""
@@ -145,6 +153,7 @@ def edit_deadline(scholarship):
     else:
         print("Edit cancelled.\n")
 
+
 def add_status():
     """
     add scholarship status and returns it
@@ -155,6 +164,7 @@ def add_status():
     while status not in ["INCOMPLETE", "ONGOING","COMPLETE"]:
         status = input("Enter incomplete, ongoing, or complete: ").strip().upper()
     return status
+
 
 def edit_status(scholarship):
     """
@@ -169,6 +179,7 @@ def edit_status(scholarship):
     else:
         print("Edit cancelled.\n")
 
+
 def add_essay():
     """
     add scholarship essay requirement and returns it
@@ -181,6 +192,7 @@ def add_essay():
     else:
         essay = "NO"
     return essay
+
 
 def edit_essay(scholarship):
     """
@@ -198,12 +210,14 @@ def edit_essay(scholarship):
     else:
         print("Edit cancelled.\n")
 
+
 def add_notes():
     """
     add scholarship notes and returns it
     """
     notes = input("Additional scholarship notes (press enter to skip): ").strip()
     return notes
+
 
 def edit_notes(scholarship):
     """

@@ -4,6 +4,7 @@ data file for scholarship tracker
 """
 import csv
 
+
 SCHOLARSHIPS_FILE = "scholarships.csv"
 
 scholarships = []
@@ -21,7 +22,8 @@ def load_scholarships():
             for row in reader: #reads each row
                 scholarships.append(row) #appends each row to the list
     except FileNotFoundError as e:
-        print("scholarships file not found:", e)
+        print("Scholarships file not found:", e)
+
 
 def save_scholarships():
     """

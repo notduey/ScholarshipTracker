@@ -6,10 +6,12 @@ import platform
 import locale #for currency
 from data import scholarships
 
+
 if platform.system() == "Windows":
     locale.setlocale(locale.LC_ALL, "English_United States.1252")
 else:
     locale.setlocale(locale.LC_ALL, "en_US.UTF-8")
+
 
 def view_scholarship():
     """
@@ -32,6 +34,7 @@ def view_scholarship():
 
         if row[6]:
             print(f" Additional notes: {row[6]}\n")
+
 
 def view_title():
     """

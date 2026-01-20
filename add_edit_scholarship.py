@@ -5,6 +5,7 @@ add scholarship
 import add_edit_functions as ae
 from data import scholarships
 
+
 def add_scholarship():
     """
     add scholarship with relevant information
@@ -21,6 +22,7 @@ def add_scholarship():
     scholarships.append(new_scholarship)
 
     print(f"\n{scholarships[-1][0]} was added!\n") #[-1] is last row, [0] is name index
+
 
 def edit_choices(scholarship):
     """

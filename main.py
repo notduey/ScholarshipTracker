@@ -5,6 +5,7 @@ main file for scholarship tracker
 from menu import main_menu
 from data import load_scholarships, save_scholarships
 
+
 def main():
     """
     main function
