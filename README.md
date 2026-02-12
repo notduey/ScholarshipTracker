@@ -3,7 +3,7 @@ A modular Python console application for tracking scholarships, built from scrat
 
 This program allows users to add, view, edit, and delete scholarships, with persistent storage using a CSV file. It emphasizes clean structure, strong input validation, and real-world usability.
 
-## OverviewSkills
+## Overview
 - ScholarshipTracker is a command-line application that manages scholarship data including:
 
 - Name
@@ -22,60 +22,23 @@ This program allows users to add, view, edit, and delete scholarships, with pers
 
 - All data is stored in scholarships.csv to ensure persistence across sessions.
 
-This project was built over ~3 weeks with minimal AI assistance (mainly for structuring and sanity checks). All core logic, validation systems, and program flow were implemented by me.
+This project was built over ~3 weeks with minimal AI assistance (mainly for structuring and sanity checks). All core logic, validation systems, and program flow were implemented by me. A bunch of my time in this project was spent on making sure invalid user inputs were handled safely so the program wouldn't crash or data wouldn't get messed up!
 
-## Features
-- Add Scholarships
+## How to Run
 
-Optional and required fields
-
-Default amount handling
-
-Date validation (MM/DD/YYYY format)
-
-Essay requirement toggle (Y/N)
-
-Graceful input handling
-
-- View Scholarships
-
-Clean formatted output
-
-Currency formatting
-
-Human-readable dates (e.g., "February 11, 2026")
-
-Status clearly displayed
-
-Notes included
-
-- Edit Scholarships
-
-Field-by-field editing menu
-
-Cancelable edits
-
-Robust date re-validation
-
-Status updates
-
-Real-time feedback
-
-- Delete Scholarships
-
-Selection by index
-
-Confirmation prompt before deletion
-
-Safe handling of invalid selections
-
-- Persistent Storage
-
-CSV-based file storage
-
-Automatic load on program start
-
-Save and exit functionality
+1. Make sure python is installed
+2. Clone the Repository:
+```bash
+git clone https://github.com/yourusername/ScholarshipTracker.git
+```
+3. Navigate into the directory:
+```bash
+cd ScholarshipTracker
+```
+4. Run the program in terminal:
+```bash
+python main.py
+```
 
 ## Project Structure
 
@@ -107,19 +70,3 @@ Module Responsibilities
 - manage_scholarship.py – Edit/Delete operations
 
 - view_scholarship.py – Formatting and display logic
-
-## How to Run
-
-1. Make sure python is installed
-2. Clone the Repository:
-```bash
-git clone https://github.com/yourusername/ScholarshipTracker.git
-```
-3. Navigate into the directory:
-```bash
-cd ScholarshipTracker
-```
-4. Run the program in terminal:
-```bash
-python main.py
-```
