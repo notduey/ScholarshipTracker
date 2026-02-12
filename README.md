@@ -1,4 +1,4 @@
-# ScholarshipTracker
+# Console-based Scholarship Tracker
 A modular Python console application for tracking scholarships, built from scratch as my first full-scale Python project. Light AI assistence was used for program structure and sanity checks!
 
 This program allows users to add, view, edit, and delete scholarships, with persistent storage using a CSV file. It emphasizes clean structure, strong input validation, and real-world usability.
@@ -41,6 +41,7 @@ git clone https://github.com/yourusername/ScholarshipTracker.git
 cd .../.../ScholarshipTracker
 ```
 4. Run the program in terminal:
+
 Windows
 ```bash
 python main.py
