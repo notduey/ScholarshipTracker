@@ -26,18 +26,29 @@ This project was built over ~3 weeks with minimal AI assistance (mainly for stru
 
 ## How to Run
 
-1. Make sure python is installed
+1. Make sure Python is installed (Python 3.8 or later)
 2. Clone the Repository:
+SSH
+```bash
+git clone git@github.com:notduey/ScholarshipTracker.git
+```
+HTTPS
 ```bash
 git clone https://github.com/yourusername/ScholarshipTracker.git
 ```
 3. Navigate into the directory:
 ```bash
-cd ScholarshipTracker
+cd .../.../ScholarshipTracker
 ```
 4. Run the program in terminal:
+Windows
 ```bash
 python main.py
+```
+MacOS
+```bash
+python3 main.py
+
 ```
 
 ## Project Structure
